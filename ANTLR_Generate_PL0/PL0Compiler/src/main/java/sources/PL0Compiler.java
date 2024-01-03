@@ -1,14 +1,19 @@
 package sources;
+
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.tree.ParseTreeVisitor;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import sources.grammerLexer;
-import sources.grammerParser;
+import sources.pl0Lexer;
+import sources.pl0Parser;
 
 public class PL0Compiler {
     public static void main(String[] args) {
@@ -28,16 +33,16 @@ public class PL0Compiler {
             CharStream inputStream = CharStreams.fromString(inputText);
 
             // 创建PL0Lexer词法分析器
-            grammerLexer lexer = new grammerLexer(inputStream);
+            pl0Lexer lexer = new pl0Lexer(inputStream);
 
             // 创建词法符号流
             CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 
             // 创建PL0Parser语法分析器
-            grammerParser parser = new grammerParser(tokenStream);
+            pl0Parser parser = new pl0Parser(tokenStream);
 
             // 解析抽象语法树
-            grammerParser.ProgramContext programContext = parser.program();
+            pl0Parser.ProgramContext programContext = parser.program();
 
             // 打印抽象语法树
             printParseTree(programContext,"--");

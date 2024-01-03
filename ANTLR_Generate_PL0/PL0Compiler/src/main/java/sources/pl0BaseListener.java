@@ -1,232 +1,232 @@
-package sources;// Generated from E:/Exercise/Courses/PL0_Project/ANTLR_Generate_PL0/antlr_generate_pl0Compiler/src/main/java/grammer.g4 by ANTLR 4.13.1
-
+// Generated from E:/Exercise/Courses/PL0_Project/ANTLR_Generate_PL0/PL0Compiler/src/main/java/pl0.g4 by ANTLR 4.13.1
+package sources;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link grammerListener},
+ * This class provides an empty implementation of {@link pl0Listener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
 @SuppressWarnings("CheckReturnValue")
-public class grammerBaseListener implements grammerListener {
+public class pl0BaseListener implements pl0Listener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram(grammerParser.ProgramContext ctx) { }
+	@Override public void enterProgram(pl0Parser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram(grammerParser.ProgramContext ctx) { }
+	@Override public void exitProgram(pl0Parser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBlock(grammerParser.BlockContext ctx) { }
+	@Override public void enterBlock(pl0Parser.BlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBlock(grammerParser.BlockContext ctx) { }
+	@Override public void exitBlock(pl0Parser.BlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConstantDeclaration(grammerParser.ConstantDeclarationContext ctx) { }
+	@Override public void enterConstantDeclaration(pl0Parser.ConstantDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConstantDeclaration(grammerParser.ConstantDeclarationContext ctx) { }
+	@Override public void exitConstantDeclaration(pl0Parser.ConstantDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConstantDefinition(grammerParser.ConstantDefinitionContext ctx) { }
+	@Override public void enterConstantDefinition(pl0Parser.ConstantDefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConstantDefinition(grammerParser.ConstantDefinitionContext ctx) { }
+	@Override public void exitConstantDefinition(pl0Parser.ConstantDefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableDeclaration(grammerParser.VariableDeclarationContext ctx) { }
+	@Override public void enterVariableDeclaration(pl0Parser.VariableDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableDeclaration(grammerParser.VariableDeclarationContext ctx) { }
+	@Override public void exitVariableDeclaration(pl0Parser.VariableDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement(grammerParser.StatementContext ctx) { }
+	@Override public void enterStatement(pl0Parser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement(grammerParser.StatementContext ctx) { }
+	@Override public void exitStatement(pl0Parser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignmentStatement(grammerParser.AssignmentStatementContext ctx) { }
+	@Override public void enterAssignmentStatement(pl0Parser.AssignmentStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignmentStatement(grammerParser.AssignmentStatementContext ctx) { }
+	@Override public void exitAssignmentStatement(pl0Parser.AssignmentStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(grammerParser.ExpressionContext ctx) { }
+	@Override public void enterExpression(pl0Parser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(grammerParser.ExpressionContext ctx) { }
+	@Override public void exitExpression(pl0Parser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTerm(grammerParser.TermContext ctx) { }
+	@Override public void enterTerm(pl0Parser.TermContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTerm(grammerParser.TermContext ctx) { }
+	@Override public void exitTerm(pl0Parser.TermContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFactor(grammerParser.FactorContext ctx) { }
+	@Override public void enterFactor(pl0Parser.FactorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFactor(grammerParser.FactorContext ctx) { }
+	@Override public void exitFactor(pl0Parser.FactorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConditionStatement(grammerParser.ConditionStatementContext ctx) { }
+	@Override public void enterConditionStatement(pl0Parser.ConditionStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConditionStatement(grammerParser.ConditionStatementContext ctx) { }
+	@Override public void exitConditionStatement(pl0Parser.ConditionStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCondition(grammerParser.ConditionContext ctx) { }
+	@Override public void enterCondition(pl0Parser.ConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCondition(grammerParser.ConditionContext ctx) { }
+	@Override public void exitCondition(pl0Parser.ConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRelationalOperator(grammerParser.RelationalOperatorContext ctx) { }
+	@Override public void enterRelationalOperator(pl0Parser.RelationalOperatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRelationalOperator(grammerParser.RelationalOperatorContext ctx) { }
+	@Override public void exitRelationalOperator(pl0Parser.RelationalOperatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoopStatement(grammerParser.LoopStatementContext ctx) { }
+	@Override public void enterLoopStatement(pl0Parser.LoopStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoopStatement(grammerParser.LoopStatementContext ctx) { }
+	@Override public void exitLoopStatement(pl0Parser.LoopStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCompoundStatement(grammerParser.CompoundStatementContext ctx) { }
+	@Override public void enterCompoundStatement(pl0Parser.CompoundStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCompoundStatement(grammerParser.CompoundStatementContext ctx) { }
+	@Override public void exitCompoundStatement(pl0Parser.CompoundStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEmptyStatement(grammerParser.EmptyStatementContext ctx) { }
+	@Override public void enterEmptyStatement(pl0Parser.EmptyStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEmptyStatement(grammerParser.EmptyStatementContext ctx) { }
+	@Override public void exitEmptyStatement(pl0Parser.EmptyStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdentifier(grammerParser.IdentifierContext ctx) { }
+	@Override public void enterIdentifier(pl0Parser.IdentifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIdentifier(grammerParser.IdentifierContext ctx) { }
+	@Override public void exitIdentifier(pl0Parser.IdentifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnsignedInteger(grammerParser.UnsignedIntegerContext ctx) { }
+	@Override public void enterUnsignedInteger(pl0Parser.UnsignedIntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnsignedInteger(grammerParser.UnsignedIntegerContext ctx) { }
+	@Override public void exitUnsignedInteger(pl0Parser.UnsignedIntegerContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

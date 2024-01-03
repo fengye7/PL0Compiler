@@ -1,4 +1,4 @@
-grammar grammer;
+grammar pl0;
 
 program: 'PROGRAM' identifier block ;
 

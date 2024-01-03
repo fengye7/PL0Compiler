@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2051cbb3-db94-4f30-b982-837d16a2bb13" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/grammer.g4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/PL0Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sources/PL0Compiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammerBaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammerBaseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammerLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammerLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammerLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammerListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammerParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/grammerVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/cn/fengye7/antlr_generate_pl0Compiler/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/cn/fengye7/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/PL0Compiler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammerBaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammerBaseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammerLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammerLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammerLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammerListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammerParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/sources/grammerVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/test/input.pl0" beforeDir="false" afterPath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/cn/fengye7/test/input.pl0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/test/test01" beforeDir="false" afterPath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/main/java/cn/fengye7/test/test01" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/test/java/cn/fengye7/antlr_generate_pl0Compiler/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/src/test/java/cn/fengye7/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/cn/fengye7/antlr_generate_pl0Compiler/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/PL0Compiler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerBaseListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerBaseVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerLexer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$AssignmentStatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$BlockContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$CompoundStatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$ConditionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$ConditionStatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$ConstantDeclarationContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$ConstantDefinitionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$EmptyStatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$ExpressionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$FactorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$IdentifierContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$LoopStatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$ProgramContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$RelationalOperatorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$StatementContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$TermContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$UnsignedIntegerContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser$VariableDeclarationContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/classes/sources/grammerVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../antlr_generate_pl0Compiler/target/test-classes/cn/fengye7/antlr_generate_pl0Compiler/AppTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/exe/pl0.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/exe/pl0.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/sources/LexicalAnalysis.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/sources/LexicalAnalysis.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/sources/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/sources/parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/a.pl0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/b.pl0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/c.pl0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/d.pl0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/input.pl0" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/input.pl0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/neq.pl0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/test0.pl0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/test1.pl0" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2aRnJpVfYXxtl7CFYZPAShdrWwp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Exercise/Courses/PL0_Project/ANTLR_Generate_PL0/PL0Compiler/src/main/java/sources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDK",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.PL0Compiler.executor": "Run"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Exercise\Courses\PL0_Project\ANTLR_Generate_PL0\PL0Compiler\src\main\java\test" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="PL0Compiler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sources.PL0Compiler" />
+      <module name="PL0Compiler" />
+      <option name="PROGRAM_PARAMETERS" value="E:\Exercise\Courses\PL0_Project\ANTLR_Generate_PL0\PL0Compiler\src\main\java\test\input.pl0 E:\Exercise\Courses\PL0_Project\ANTLR_Generate_PL0\PL0Compiler\src\main\java\out\output.txt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sources.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.PL0Compiler" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-249ae16d76d6-98297cd8" />
+        <option value="jdk-20.0.2-corretto-20.0.2.1-f644763e9732-27d99999" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="2051cbb3-db94-4f30-b982-837d16a2bb13" name="更改" comment="" />
+      <created>1704290191853</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704290191853</updated>
+      <workItem from="1704290193181" duration="3553000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
