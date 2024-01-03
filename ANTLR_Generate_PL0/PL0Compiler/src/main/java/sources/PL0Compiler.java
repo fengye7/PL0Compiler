@@ -1,9 +1,7 @@
 package sources;
 
-
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
-import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
@@ -11,6 +9,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import sources.pl0Lexer;
 import sources.pl0Parser;
@@ -45,10 +44,17 @@ public class PL0Compiler {
             pl0Parser.ProgramContext programContext = parser.program();
 
             // 打印抽象语法树
-            printParseTree(programContext,"--");
+            printParseTree(programContext, "--");
 
-            // 生成中间代码并写入输出文件
-            // TODO: 根据需求编写生成中间代码的逻辑，并将结果写入输出文件
+            // 创建中间代码生成器
+            QuadrupleGenerator quadrupleGenerator = new QuadrupleGenerator();
+            // 遍历抽象语法树，生成中间代码
+            quadrupleGenerator.visit(programContext);
+            // 获取生成的四元式中间代码
+            List<Quadruple> quadruples = quadrupleGenerator.getQuadruples();
+
+            // 将中间代码写入输出文件
+            writeQuadruplesToFile(quadruples, outputFile);
 
             System.out.println("Abstract syntax tree printed successfully.");
         } catch (IOException e) {
@@ -62,5 +68,10 @@ public class PL0Compiler {
             ParseTree child = tree.getChild(i);
             printParseTree(child, indent + "  ");
         }
+    }
+
+    public static void writeQuadruplesToFile(List<Quadruple> quadruples, String outputFile) {
+        // TODO: 将四元式中间代码写入输出文件
+        // 这里你需要根据你的需求和四元式中间代码生成类的设计来实现将中间代码写入文件的逻辑
     }
 }

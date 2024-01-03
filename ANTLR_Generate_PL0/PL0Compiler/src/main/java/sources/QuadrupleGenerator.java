@@ -3,6 +3,7 @@ package sources;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import sources.pl0BaseVisitor;
@@ -36,7 +37,12 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitProgram(ProgramContext ctx) {
-        visit(ctx.block());
+        Token programToken = ctx.getStart();
+        String programName = ctx.identifier().getText();
+
+        System.out.println("Program Name: " + programName);
+
+        visitBlock(ctx.block());
         generateQuadruple("OPR", "0", "0", "0"); // Halt operation
         return null;
     }
@@ -44,19 +50,22 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
     @Override
     public Void visitBlock(BlockContext ctx) {
         if (ctx.constantDeclaration() != null) {
-            visit(ctx.constantDeclaration());
+            visitConstantDeclaration(ctx.constantDeclaration());
         }
         if (ctx.variableDeclaration() != null) {
-            visit(ctx.variableDeclaration());
+            visitVariableDeclaration(ctx.variableDeclaration());
         }
-        visit(ctx.statement());
+        visitStatement(ctx.statement());
+
+        // 生成四元式中间代码
+        generateQuadruple("END", "", "", ""); // 结束程序块
         return null;
     }
 
     @Override
     public Void visitConstantDeclaration(ConstantDeclarationContext ctx) {
         for (ConstantDefinitionContext defCtx : ctx.constantDefinition()) {
-            visit(defCtx);
+            visitConstantDefinition(defCtx);
         }
         return null;
     }

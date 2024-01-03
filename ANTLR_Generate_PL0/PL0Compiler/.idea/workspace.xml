@@ -6,18 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2051cbb3-db94-4f30-b982-837d16a2bb13" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sources/PL0Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sources/PL0Compiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sources/QuadrupleGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sources/QuadrupleGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/exe/pl0.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/exe/pl0.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/sources/LexicalAnalysis.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/sources/LexicalAnalysis.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/sources/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/sources/parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/a.pl0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/b.pl0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/c.pl0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/d.pl0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/input.pl0" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/input.pl0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/neq.pl0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/test0.pl0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/test1.pl0" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704290191853</updated>
-      <workItem from="1704290193181" duration="6711000" />
+      <workItem from="1704290193181" duration="9146000" />
     </task>
     <servers />
   </component>
