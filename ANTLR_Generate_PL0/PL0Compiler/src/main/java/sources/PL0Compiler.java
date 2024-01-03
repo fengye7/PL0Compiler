@@ -14,6 +14,11 @@ import java.util.List;
 import sources.pl0Lexer;
 import sources.pl0Parser;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+
 public class PL0Compiler {
     public static void main(String[] args) {
         if (args.length < 2) {
@@ -71,7 +76,15 @@ public class PL0Compiler {
     }
 
     public static void writeQuadruplesToFile(List<Quadruple> quadruples, String outputFile) {
-        // TODO: 将四元式中间代码写入输出文件
-        // 这里你需要根据你的需求和四元式中间代码生成类的设计来实现将中间代码写入文件的逻辑
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+            for (Quadruple quadruple : quadruples) {
+                String quadrupleString = quadruple.operator + " " + quadruple.op1 + " " + quadruple.op2 + " " + quadruple.result;
+                writer.write(quadrupleString);
+                writer.newLine();
+            }
+            System.out.println("Quadruples written to file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

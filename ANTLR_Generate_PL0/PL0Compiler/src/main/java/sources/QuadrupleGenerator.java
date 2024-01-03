@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
-import sources.pl0BaseVisitor;
-import sources.pl0Parser;
 import sources.pl0Parser.*;
 
 class Quadruple {
@@ -21,6 +18,10 @@ class Quadruple {
         this.op1 = op1;
         this.op2 = op2;
         this.result = result;
+    }
+
+    public void setOperand3(String operand3) {
+        this.result = operand3;
     }
 }
 
@@ -80,7 +81,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitVariableDeclaration(VariableDeclarationContext ctx) {
-        for (TerminalNode identifier : ctx.identifier()) {
+        for (IdentifierContext identifier : ctx.identifier()) {
             generateQuadruple("VAR", null, null, identifier.getText());
         }
         return null;
@@ -88,8 +89,8 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitAssignmentStatement(AssignmentStatementContext ctx) {
-        String variable = ctx.Identifier().getText();
-        String expressionResult = visit(ctx.expression());
+        String variable = ctx.identifier().getText();
+        String expressionResult = visitExpression(ctx.expression());
 
         generateQuadruple(":=", expressionResult, null, variable);
 
@@ -98,35 +99,22 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitExpression(ExpressionContext ctx) {
-        String termResult = visit(ctx.term());
-        String expressionPrimeResult = visit(ctx.expressionPrime());
+        String termResult = visitTerm(ctx.term());
 
-        if (expressionPrimeResult != null) {
+        if (ctx.getChildCount() > 1) {
+            String operator = ctx.getChild(0).getText();
+            String expressionResult = visitExpression(ctx.expression());
             String result = generateTempVariable();
 
-            Quadruple addQuadruple = new Quadruple("+", termResult, expressionPrimeResult, result);
-            quadruples.add(addQuadruple);
+            Quadruple quadruple;
 
-            return result;
-        }
+            if (operator.equals("+")) {
+                quadruple = new Quadruple("+", termResult, expressionResult, result);
+            } else {
+                quadruple = new Quadruple("-", termResult, expressionResult, result);
+            }
 
-        return termResult;
-    }
-
-    @Override
-    public String visitExpressionPrime(ExpressionPrimeContext ctx) {
-        if (ctx.getChildCount() == 0) {
-            return null;
-        }
-
-        String termResult = visit(ctx.term());
-        String expressionPrimeResult = visit(ctx.expressionPrime());
-
-        if (expressionPrimeResult != null) {
-            String result = generateTempVariable();
-
-            Quadruple addQuadruple = new Quadruple("+", termResult, expressionPrimeResult, result);
-            quadruples.add(addQuadruple);
+            quadruples.add(quadruple);
 
             return result;
         }
@@ -136,35 +124,22 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitTerm(TermContext ctx) {
-        String factorResult = visit(ctx.factor());
-        String termPrimeResult = visit(ctx.termPrime());
+        String factorResult = visitFactor(ctx.factor());
 
-        if (termPrimeResult != null) {
+        if (ctx.getChildCount() > 1) {
+            String operator = ctx.getChild(1).getText();
+            String termResult = visitTerm(ctx.term());
             String result = generateTempVariable();
 
-            Quadruple multiplyQuadruple = new Quadruple("*", factorResult, termPrimeResult, result);
-            quadruples.add(multiplyQuadruple);
+            Quadruple quadruple;
 
-            return result;
-        }
+            if (operator.equals("*")) {
+                quadruple = new Quadruple("*", factorResult, termResult, result);
+            } else {
+                quadruple = new Quadruple("/", factorResult, termResult, result);
+            }
 
-        return factorResult;
-    }
-
-    @Override
-    public String visitTermPrime(TermPrimeContext ctx) {
-        if (ctx.getChildCount() == 0) {
-            return null;
-        }
-
-        String factorResult = visit(ctx.factor());
-        String termPrimeResult = visit(ctx.termPrime());
-
-        if (termPrimeResult != null) {
-            String result = generateTempVariable();
-
-            Quadruple multiplyQuadruple = new Quadruple("*", factorResult, termPrimeResult, result);
-            quadruples.add(multiplyQuadruple);
+            quadruples.add(quadruple);
 
             return result;
         }
@@ -174,12 +149,12 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitFactor(FactorContext ctx) {
-        if (ctx.Identifier() != null) {
-            return ctx.Identifier().getText();
-        } else if (ctx.UnsignedInteger() != null) {
-            return ctx.UnsignedInteger().getText();
-        } else if (ctx.expression()!= null) {
-            return visit(ctx.expression());
+        if (ctx.identifier() != null) {
+            return visitIdentifier(ctx.identifier());
+        } else if (ctx.unsignedInteger() != null) {
+            return visitUnsignedInteger(ctx.unsignedInteger());
+        } else if (ctx.expression() != null) {
+            return visitExpression(ctx.expression());
         }
 
         return null;
@@ -187,25 +162,25 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitConditionStatement(ConditionStatementContext ctx) {
-        String conditionResult = visit(ctx.condition());
+        String trueLabel = generateLabelVariable();
+        String falseLabel = generateLabelVariable();
+        String conditionResult = visitCondition(ctx.condition());
 
-        generateQuadruple("JPC", conditionResult, null, null);
+        generateQuadruple("JPC", conditionResult, null, trueLabel); // 条件为真时跳转执行语句
+        generateQuadruple("JMP", null, null, falseLabel);
 
-        int jumpQuadrupleIndex = quadruples.size() - 1; // Remember the index of the jump quadruple
-
-        visit(ctx.statement());
-
-        Quadruple jumpQuadruple = quadruples.get(jumpQuadrupleIndex);
-        jumpQuadruple.setOperand3(String.valueOf(quadruples.size())); // Set the jump target to the current quadruple count
+        generateQuadruple("LBL", trueLabel, null, null); // 添加条件为真时的标签
+        visitStatement(ctx.statement());
+        generateQuadruple("LBL", falseLabel, null, null); // 添加条件为假时的标签
 
         return null;
     }
 
     @Override
     public String visitCondition(ConditionContext ctx) {
-        String expression1Result = visit(ctx.expression(0));
-        String expression2Result = visit(ctx.expression(1));
-        String operator = visit(ctx.relationalOperator());
+        String expression1Result = visitExpression(ctx.expression(0));
+        String expression2Result = visitExpression(ctx.expression(1));
+        String operator = visitRelationalOperator(ctx.relationalOperator());
 
         String result = generateTempVariable();
 
@@ -217,33 +192,30 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitRelationalOperator(RelationalOperatorContext ctx) {
-        if (ctx.Equal() != null) {
+        if (ctx.getText().equals("=")) {
             return "==";
-        } else if (ctx.LessThan() != null) {
-            return "<";
-        } else if (ctx.LessThanOrEqual() != null) {
-            return "<=";
-        } else if (ctx.GreaterThan() != null) {
-            return ">";
-        } else if (ctx.GreaterThanOrEqual() != null) {
-            return ">=";
-        } else if (ctx.NotEqual() != null) {
+        } else if (ctx.getText().equals("<>")) {
             return "!=";
+        } else {
+            return ctx.getText();
         }
-
-        return null;
     }
 
     @Override
     public Void visitLoopStatement(LoopStatementContext ctx) {
-        int loopStartIndex = quadruples.size(); // Remember the index of the loop start quadruple
+        String trueLabel = generateLabelVariable();
+        String falseLabel = generateLabelVariable();
+        String conditionLabel = generateLabelVariable();
 
-        visit(ctx.statement());
+        generateQuadruple("LBL", conditionLabel, null, null);
+        String conditionResult = visitCondition(ctx.condition());
+        generateQuadruple("JPC", conditionResult, null, trueLabel);
+        generateQuadruple("JMP", null, null, falseLabel); // 跳出循环
 
-        String conditionResult = visit(ctx.condition());
-
-        generateQuadruple("JPC", conditionResult, null, String.valueOf(loopStartIndex)); // Jump back to the loop start
-
+        generateQuadruple("LBL", trueLabel, null, null);
+        visitStatement(ctx.statement());
+        generateQuadruple("JMP", null, null, conditionLabel); // 跳回循环开始
+        generateQuadruple("LBL", falseLabel, null, null);
         return null;
     }
 
@@ -276,8 +248,14 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
     }
 
     private String generateTempVariable() {
-        String tempVariable = "T" + tempCount;
+        String tempVariable = "Temp" + tempCount;
         tempCount++;
+        return tempVariable;
+    }
+
+    private String generateLabelVariable() {
+        String tempVariable = "Label" + labelCount;
+        labelCount++;
         return tempVariable;
     }
 

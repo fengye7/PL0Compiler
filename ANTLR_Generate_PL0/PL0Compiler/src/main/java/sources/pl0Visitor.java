@@ -2,7 +2,6 @@ package sources;
 
 // Generated from E:/Exercise/Courses/PL0_Project/ANTLR_Generate_PL0/PL0Compiler/src/main/java/pl0.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
-import sources.pl0Parser;
 
 /**
  * This interface defines a complete generic visitor for a parse tree produced
@@ -56,22 +55,25 @@ public interface pl0Visitor<T> extends ParseTreeVisitor<T> {
 	T visitAssignmentStatement(pl0Parser.AssignmentStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#expression}.
+	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpression(pl0Parser.ExpressionContext ctx);
+	String visitExpression(pl0Parser.ExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#term}.
+	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTerm(pl0Parser.TermContext ctx);
+	String visitTerm(pl0Parser.TermContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#factor}.
+	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFactor(pl0Parser.FactorContext ctx);
+	String visitFactor(pl0Parser.FactorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#conditionStatement}.
 	 * @param ctx the parse tree
@@ -80,16 +82,18 @@ public interface pl0Visitor<T> extends ParseTreeVisitor<T> {
 	T visitConditionStatement(pl0Parser.ConditionStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#condition}.
+	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCondition(pl0Parser.ConditionContext ctx);
+	String visitCondition(pl0Parser.ConditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#relationalOperator}.
+	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRelationalOperator(pl0Parser.RelationalOperatorContext ctx);
+	String visitRelationalOperator(pl0Parser.RelationalOperatorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#loopStatement}.
 	 * @param ctx the parse tree
@@ -110,14 +114,16 @@ public interface pl0Visitor<T> extends ParseTreeVisitor<T> {
 	T visitEmptyStatement(pl0Parser.EmptyStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#identifier}.
+	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIdentifier(pl0Parser.IdentifierContext ctx);
+	String visitIdentifier(pl0Parser.IdentifierContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pl0Parser#unsignedInteger}.
+	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnsignedInteger(pl0Parser.UnsignedIntegerContext ctx);
+	String visitUnsignedInteger(pl0Parser.UnsignedIntegerContext ctx);
 }

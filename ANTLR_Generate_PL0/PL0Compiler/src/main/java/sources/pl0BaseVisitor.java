@@ -67,21 +67,21 @@ public class pl0BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements pl
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpression(pl0Parser.ExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public String visitExpression(pl0Parser.ExpressionContext ctx) { return (String) visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTerm(pl0Parser.TermContext ctx) { return visitChildren(ctx); }
+	@Override public String visitTerm(pl0Parser.TermContext ctx) { return (String) visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFactor(pl0Parser.FactorContext ctx) { return visitChildren(ctx); }
+	@Override public String visitFactor(pl0Parser.FactorContext ctx) { return (String) visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -95,14 +95,14 @@ public class pl0BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements pl
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCondition(pl0Parser.ConditionContext ctx) { return visitChildren(ctx); }
+	@Override public String visitCondition(pl0Parser.ConditionContext ctx) { return (String) visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRelationalOperator(pl0Parser.RelationalOperatorContext ctx) { return visitChildren(ctx); }
+	@Override public String visitRelationalOperator(pl0Parser.RelationalOperatorContext ctx) { return (String) visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -130,12 +130,12 @@ public class pl0BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements pl
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIdentifier(pl0Parser.IdentifierContext ctx) { return visitChildren(ctx); }
+	@Override public String visitIdentifier(pl0Parser.IdentifierContext ctx) { return (String) visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitUnsignedInteger(pl0Parser.UnsignedIntegerContext ctx) { return visitChildren(ctx); }
+	@Override public String visitUnsignedInteger(pl0Parser.UnsignedIntegerContext ctx) { return (String) visitChildren(ctx); }
 }

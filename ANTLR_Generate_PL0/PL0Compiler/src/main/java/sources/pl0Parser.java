@@ -588,7 +588,7 @@ public class pl0Parser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof pl0Visitor ) return ((pl0Visitor<? extends T>)visitor).visitExpression(this);
+			if ( visitor instanceof pl0Visitor ) return (T) ((pl0Visitor<? extends T>)visitor).visitExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -709,7 +709,7 @@ public class pl0Parser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof pl0Visitor ) return ((pl0Visitor<? extends T>)visitor).visitTerm(this);
+			if ( visitor instanceof pl0Visitor ) return (T) ((pl0Visitor<? extends T>)visitor).visitTerm(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -814,7 +814,7 @@ public class pl0Parser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof pl0Visitor ) return ((pl0Visitor<? extends T>)visitor).visitFactor(this);
+			if ( visitor instanceof pl0Visitor ) return (T) ((pl0Visitor<? extends T>)visitor).visitFactor(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -945,7 +945,7 @@ public class pl0Parser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof pl0Visitor ) return ((pl0Visitor<? extends T>)visitor).visitCondition(this);
+			if ( visitor instanceof pl0Visitor ) return (T) ((pl0Visitor<? extends T>)visitor).visitCondition(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -991,7 +991,7 @@ public class pl0Parser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof pl0Visitor ) return ((pl0Visitor<? extends T>)visitor).visitRelationalOperator(this);
+			if ( visitor instanceof pl0Visitor ) return (T) ((pl0Visitor<? extends T>)visitor).visitRelationalOperator(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1213,7 +1213,7 @@ public class pl0Parser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof pl0Visitor ) return ((pl0Visitor<? extends T>)visitor).visitIdentifier(this);
+			if ( visitor instanceof pl0Visitor ) return (T) ((pl0Visitor<? extends T>)visitor).visitIdentifier(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1285,7 +1285,7 @@ public class pl0Parser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof pl0Visitor ) return ((pl0Visitor<? extends T>)visitor).visitUnsignedInteger(this);
+			if ( visitor instanceof pl0Visitor ) return (T) ((pl0Visitor<? extends T>)visitor).visitUnsignedInteger(this);
 			else return visitor.visitChildren(this);
 		}
 	}
