@@ -36,7 +36,7 @@ void Parser::programHeader()
 {
     match(KEYWORD_PROGRAM, "PROGRAM");
     match(IDENTIFIER, "_");
-    match(DELIMITER, ";");
+    // match(DELIMITER, ";");
 }
 
 void Parser::subprogram()

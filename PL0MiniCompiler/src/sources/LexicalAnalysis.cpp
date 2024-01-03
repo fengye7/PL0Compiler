@@ -14,7 +14,7 @@ Token LexicalAnalysis::getNextToken()
     }
 
     // 忽略空格、制表符、换行符
-    while (inputFile.get(c) && (c == ' ' || c == '\t' || c == '\n'))
+    while (inputFile.get(c) && (c == ' ' || c == '\t' || c == '\n' || c == '\r'))
         ;
 
     // 是a-z/A-Z
@@ -132,7 +132,8 @@ Token LexicalAnalysis::getNextToken()
         else
         {
             // Error: Invalid character
-            error("Invalid character: " + lexeme);
+            cout << tokenTypeToString(currentToken.type) << ' ' << currentToken.lexeme << endl;
+            error("Invalid character: " + lexeme + ' ' + c);
         }
     }
 

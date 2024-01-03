@@ -1,4 +1,4 @@
-PROGRAM add;
+PROGRAM add
 VAR x,y;
 BEGIN
 	x:=1;
