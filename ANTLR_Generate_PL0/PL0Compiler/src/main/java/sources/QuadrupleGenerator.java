@@ -3,117 +3,276 @@ package sources;
 import java.util.ArrayList;
 import java.util.List;
 
-class Quadruplet {
+import org.antlr.v4.runtime.tree.TerminalNode;
+
+import sources.pl0BaseVisitor;
+import sources.pl0Parser;
+import sources.pl0Parser.*;
+
+class Quadruple {
     public String operator;
     public String op1;
     public String op2;
     public String result;
+
+    public Quadruple(String operator, String op1, String op2, String result) {
+        this.operator = operator;
+        this.op1 = op1;
+        this.op2 = op2;
+        this.result = result;
+    }
 }
 
-public class QuadrupleGenerator {
-    private int tempCount = 1;
-    private int labelCount = 1;
-    List<Quadruplet> quadrupleList = new ArrayList<>();
+public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
+    private List<Quadruple> quadruples;
+    private int tempCount;
+    private int labelCount;
 
-    public List<String> generateQuadruples(pl0Parser.ProgramContext program) {
-        generateQuadruples(program.getBlock());
+    public QuadrupleGenerator() {
+        quadruples = new ArrayList<>();
+        tempCount = 0;
+        labelCount = 0;
+    }
+
+    @Override
+    public Void visitProgram(ProgramContext ctx) {
+        visit(ctx.block());
+        generateQuadruple("OPR", "0", "0", "0"); // Halt operation
+        return null;
+    }
+
+    @Override
+    public Void visitBlock(BlockContext ctx) {
+        if (ctx.constantDeclaration() != null) {
+            visit(ctx.constantDeclaration());
+        }
+        if (ctx.variableDeclaration() != null) {
+            visit(ctx.variableDeclaration());
+        }
+        visit(ctx.statement());
+        return null;
+    }
+
+    @Override
+    public Void visitConstantDeclaration(ConstantDeclarationContext ctx) {
+        for (ConstantDefinitionContext defCtx : ctx.constantDefinition()) {
+            visit(defCtx);
+        }
+        return null;
+    }
+
+    @Override
+    public Void visitConstantDefinition(ConstantDefinitionContext ctx) {
+        String name = ctx.identifier().getText();
+        String value = ctx.unsignedInteger().getText();
+        generateQuadruple("CONST", value, null, name);
+        return null;
+    }
+
+    @Override
+    public Void visitVariableDeclaration(VariableDeclarationContext ctx) {
+        for (TerminalNode identifier : ctx.identifier()) {
+            generateQuadruple("VAR", null, null, identifier.getText());
+        }
+        return null;
+    }
+
+    @Override
+    public Void visitAssignmentStatement(AssignmentStatementContext ctx) {
+        String variable = ctx.Identifier().getText();
+        String expressionResult = visit(ctx.expression());
+
+        generateQuadruple(":=", expressionResult, null, variable);
+
+        return null;
+    }
+
+    @Override
+    public String visitExpression(ExpressionContext ctx) {
+        String termResult = visit(ctx.term());
+        String expressionPrimeResult = visit(ctx.expressionPrime());
+
+        if (expressionPrimeResult != null) {
+            String result = generateTempVariable();
+
+            Quadruple addQuadruple = new Quadruple("+", termResult, expressionPrimeResult, result);
+            quadruples.add(addQuadruple);
+
+            return result;
+        }
+
+        return termResult;
+    }
+
+    @Override
+    public String visitExpressionPrime(ExpressionPrimeContext ctx) {
+        if (ctx.getChildCount() == 0) {
+            return null;
+        }
+
+        String termResult = visit(ctx.term());
+        String expressionPrimeResult = visit(ctx.expressionPrime());
+
+        if (expressionPrimeResult != null) {
+            String result = generateTempVariable();
+
+            Quadruple addQuadruple = new Quadruple("+", termResult, expressionPrimeResult, result);
+            quadruples.add(addQuadruple);
+
+            return result;
+        }
+
+        return termResult;
+    }
+
+    @Override
+    public String visitTerm(TermContext ctx) {
+        String factorResult = visit(ctx.factor());
+        String termPrimeResult = visit(ctx.termPrime());
+
+        if (termPrimeResult != null) {
+            String result = generateTempVariable();
+
+            Quadruple multiplyQuadruple = new Quadruple("*", factorResult, termPrimeResult, result);
+            quadruples.add(multiplyQuadruple);
+
+            return result;
+        }
+
+        return factorResult;
+    }
+
+    @Override
+    public String visitTermPrime(TermPrimeContext ctx) {
+        if (ctx.getChildCount() == 0) {
+            return null;
+        }
+
+        String factorResult = visit(ctx.factor());
+        String termPrimeResult = visit(ctx.termPrime());
+
+        if (termPrimeResult != null) {
+            String result = generateTempVariable();
+
+            Quadruple multiplyQuadruple = new Quadruple("*", factorResult, termPrimeResult, result);
+            quadruples.add(multiplyQuadruple);
+
+            return result;
+        }
+
+        return factorResult;
+    }
+
+    @Override
+    public String visitFactor(FactorContext ctx) {
+        if (ctx.Identifier() != null) {
+            return ctx.Identifier().getText();
+        } else if (ctx.UnsignedInteger() != null) {
+            return ctx.UnsignedInteger().getText();
+        } else if (ctx.expression()!= null) {
+            return visit(ctx.expression());
+        }
+
+        return null;
+    }
+
+    @Override
+    public Void visitConditionStatement(ConditionStatementContext ctx) {
+        String conditionResult = visit(ctx.condition());
+
+        generateQuadruple("JPC", conditionResult, null, null);
+
+        int jumpQuadrupleIndex = quadruples.size() - 1; // Remember the index of the jump quadruple
+
+        visit(ctx.statement());
+
+        Quadruple jumpQuadruple = quadruples.get(jumpQuadrupleIndex);
+        jumpQuadruple.setOperand3(String.valueOf(quadruples.size())); // Set the jump target to the current quadruple count
+
+        return null;
+    }
+
+    @Override
+    public String visitCondition(ConditionContext ctx) {
+        String expression1Result = visit(ctx.expression(0));
+        String expression2Result = visit(ctx.expression(1));
+        String operator = visit(ctx.relationalOperator());
+
+        String result = generateTempVariable();
+
+        Quadruple compareQuadruple = new Quadruple(operator, expression1Result, expression2Result, result);
+        quadruples.add(compareQuadruple);
+
+        return result;
+    }
+
+    @Override
+    public String visitRelationalOperator(RelationalOperatorContext ctx) {
+        if (ctx.Equal() != null) {
+            return "==";
+        } else if (ctx.LessThan() != null) {
+            return "<";
+        } else if (ctx.LessThanOrEqual() != null) {
+            return "<=";
+        } else if (ctx.GreaterThan() != null) {
+            return ">";
+        } else if (ctx.GreaterThanOrEqual() != null) {
+            return ">=";
+        } else if (ctx.NotEqual() != null) {
+            return "!=";
+        }
+
+        return null;
+    }
+
+    @Override
+    public Void visitLoopStatement(LoopStatementContext ctx) {
+        int loopStartIndex = quadruples.size(); // Remember the index of the loop start quadruple
+
+        visit(ctx.statement());
+
+        String conditionResult = visit(ctx.condition());
+
+        generateQuadruple("JPC", conditionResult, null, String.valueOf(loopStartIndex)); // Jump back to the loop start
+
+        return null;
+    }
+
+    @Override
+    public Void visitCompoundStatement(CompoundStatementContext ctx) {
+        for (StatementContext statementCtx : ctx.statement()) {
+            visit(statementCtx);
+        }
+        return null;
+    }
+
+    @Override
+    public Void visitEmptyStatement(EmptyStatementContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitIdentifier(IdentifierContext ctx) {
+        return ctx.getText();
+    }
+
+    @Override
+    public String visitUnsignedInteger(UnsignedIntegerContext ctx) {
+        return ctx.getText();
+    }
+
+    private void generateQuadruple(String operator, String operand1, String operand2, String operand3) {
+        Quadruple quadruple = new Quadruple(operator, operand1, operand2, operand3);
+        quadruples.add(quadruple);
+    }
+
+    private String generateTempVariable() {
+        String tempVariable = "T" + tempCount;
+        tempCount++;
+        return tempVariable;
+    }
+
+    public List<Quadruple> getQuadruples() {
         return quadruples;
-    }
-
-    private void generateQuadruples(pl0Parser.BlockContext block) {
-        generateQuadruples(block.getVariableDeclaration());
-        generateQuadruples(block.getStatements());
-    }
-
-    private void generateQuadruples(VariableDeclarationContext variableDeclaration) {
-        // 处理变量声明
-        // 这里可以生成相应的四元式
-    }
-
-    private void generateQuadruples(StatementsContext statements) {
-        for (StatementContext statement : statements.getStatement()) {
-            generateQuadruples(statement);
-        }
-    }
-
-    private void generateQuadruples(StatementContext statement) {
-        if (statement instanceof AssignmentStatementContext) {
-            generateQuadruples((AssignmentStatementContext) statement);
-        } else if (statement instanceof LoopStatementContext) {
-            generateQuadruples((LoopStatementContext) statement);
-        } else if (statement instanceof ConditionStatementContext) {
-            generateQuadruples((ConditionStatementContext) statement);
-        }
-        // 处理其他类型的语句
-    }
-
-    private void generateQuadruples(AssignmentStatementContext assignmentStatement) {
-        String target = assignmentStatement.getIdentifier().getText();
-        String source = generateExpressionQuadruple(assignmentStatement.getExpression());
-        quadruples.add(target + " = " + source);
-    }
-
-    private void generateQuadruples(LoopStatementContext loopStatement) {
-        String loopStartLabel = generateLabel();
-        String loopEndLabel = generateLabel();
-
-        quadruples.add(loopStartLabel + ":");
-        String conditionResult = generateExpressionQuadruple(loopStatement.getCondition());
-        quadruples.add("if " + conditionResult + " goto " + loopEndLabel);
-
-        generateQuadruples(loopStatement.getStatement());
-
-        quadruples.add("goto " + loopStartLabel);
-        quadruples.add(loopEndLabel + ":");
-    }
-
-    private void generateQuadruples(ConditionStatementContext conditionStatement) {
-        String conditionResult = generateExpressionQuadruple(conditionStatement.getCondition());
-        String trueLabel = generateLabel();
-        String falseLabel = generateLabel();
-        String endLabel = generateLabel();
-
-        quadruples.add("if " + conditionResult + " goto " + trueLabel);
-        quadruples.add("goto " + falseLabel);
-        quadruples.add(trueLabel + ":");
-
-        generateQuadruples(conditionStatement.getTrueStatement());
-
-        quadruples.add("goto " + endLabel);
-        quadruples.add(falseLabel + ":");
-
-        generateQuadruples(conditionStatement.getFalseStatement());
-
-        quadruples.add(endLabel + ":");
-    }
-
-    private String generateExpressionQuadruple(ExpressionContext expression) {
-        if (expression instanceof TermContext) {
-            return generateTermQuadruple((TermContext) expression);
-        }
-        // 处理其他类型的表达式
-        return null;
-    }
-
-    private String generateTermQuadruple(TermContext term) {
-        if (term instanceof FactorContext) {
-            return generateFactorQuadruple((FactorContext) term);
-        }
-        // 处理其他类型的项
-        return null;
-    }
-
-    private String generateFactorQuadruple(FactorContext factor) {
-        if (factor instanceof IdentifierContext) {
-            return ((IdentifierContext) factor).getText();
-        } else if (factor instanceof UnsignedIntegerContext) {
-            return ((UnsignedIntegerContext) factor).getText();
-        }
-        // 处理其他类型的因子
-        return null;
-    }
-
-    private String generateLabel() {
-        return "L" + labelCount++;
     }
 }
