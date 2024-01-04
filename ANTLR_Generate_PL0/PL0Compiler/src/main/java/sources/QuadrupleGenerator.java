@@ -38,6 +38,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitProgram(ProgramContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         Token programToken = ctx.getStart();
         String programName = ctx.identifier().getText();
 
@@ -50,6 +54,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitBlock(BlockContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         if (ctx.constantDeclaration() != null) {
             visitConstantDeclaration(ctx.constantDeclaration());
         }
@@ -65,6 +73,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitConstantDeclaration(ConstantDeclarationContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         for (ConstantDefinitionContext defCtx : ctx.constantDefinition()) {
             visitConstantDefinition(defCtx);
         }
@@ -73,6 +85,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitConstantDefinition(ConstantDefinitionContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         String name = ctx.identifier().getText();
         String value = ctx.unsignedInteger().getText();
         generateQuadruple("CONST", value, null, name);
@@ -81,6 +97,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitVariableDeclaration(VariableDeclarationContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         for (IdentifierContext identifier : ctx.identifier()) {
             generateQuadruple("VAR", null, null, identifier.getText());
         }
@@ -89,6 +109,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitAssignmentStatement(AssignmentStatementContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         String variable = ctx.identifier().getText();
         String expressionResult = visitExpression(ctx.expression());
 
@@ -99,6 +123,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitExpression(ExpressionContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         String termResult = visitTerm(ctx.term());
 
         if (ctx.getChildCount() > 1) {
@@ -124,6 +152,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitTerm(TermContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         String factorResult = visitFactor(ctx.factor());
 
         if (ctx.getChildCount() > 1) {
@@ -149,6 +181,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitFactor(FactorContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         if (ctx.identifier() != null) {
             return visitIdentifier(ctx.identifier());
         } else if (ctx.unsignedInteger() != null) {
@@ -162,6 +198,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitConditionStatement(ConditionStatementContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         String trueLabel = generateLabelVariable();
         String falseLabel = generateLabelVariable();
         String conditionResult = visitCondition(ctx.condition());
@@ -178,6 +218,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitCondition(ConditionContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         String expression1Result = visitExpression(ctx.expression(0));
         String expression2Result = visitExpression(ctx.expression(1));
         String operator = visitRelationalOperator(ctx.relationalOperator());
@@ -192,6 +236,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public String visitRelationalOperator(RelationalOperatorContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         if (ctx.getText().equals("=")) {
             return "==";
         } else if (ctx.getText().equals("<>")) {
@@ -203,6 +251,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitLoopStatement(LoopStatementContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         String trueLabel = generateLabelVariable();
         String falseLabel = generateLabelVariable();
         String conditionLabel = generateLabelVariable();
@@ -221,6 +273,10 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitCompoundStatement(CompoundStatementContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         for (StatementContext statementCtx : ctx.statement()) {
             visit(statementCtx);
         }
@@ -229,16 +285,28 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     @Override
     public Void visitEmptyStatement(EmptyStatementContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         return null;
     }
 
     @Override
     public String visitIdentifier(IdentifierContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         return ctx.getText();
     }
 
     @Override
     public String visitUnsignedInteger(UnsignedIntegerContext ctx) {
+        if(ctx == null){
+            System.out.println("ctx is null");
+            return null;
+        }
         return ctx.getText();
     }
 
