@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2051cbb3-db94-4f30-b982-837d16a2bb13" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/test01" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/test01" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/exe/pl0.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/exe/pl0.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/test01" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/test/test01" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,35 +25,35 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2aRnJpVfYXxtl7CFYZPAShdrWwp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Exercise/Courses/PL0_Project/ANTLR_Generate_PL0/PL0Compiler/src/main/java/sources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDK",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.PL0Compiler.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Exercise/Courses/PL0_Project/ANTLR_Generate_PL0/PL0Compiler/src/main/java/sources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDK&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.PL0Compiler.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Exercise\Courses\PL0_Project\ANTLR_Generate_PL0\PL0Compiler\src\main\java\test" />
@@ -60,7 +63,7 @@
     <configuration name="PL0Compiler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sources.PL0Compiler" />
       <module name="PL0Compiler" />
-      <option name="PROGRAM_PARAMETERS" value="E:\Exercise\Courses\PL0_Project\ANTLR_Generate_PL0\PL0Compiler\src\main\java\test\input.pl0 E:\Exercise\Courses\PL0_Project\ANTLR_Generate_PL0\PL0Compiler\src\main\java\out\output.txt" />
+      <option name="PROGRAM_PARAMETERS" value=".\src\main\java\test\test01 .\src\main\java\out\test01_output.txt" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sources.*" />
@@ -93,7 +96,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704290191853</updated>
-      <workItem from="1704290193181" duration="14688000" />
+      <workItem from="1704290193181" duration="19414000" />
+      <workItem from="1704368623568" duration="73000" />
+      <workItem from="1704444057336" duration="1428000" />
     </task>
     <servers />
   </component>
