@@ -82,6 +82,11 @@ Token LexicalAnalysis::getNextToken()
         currentToken.type = INTEGER;
         currentToken.lexeme = lexeme;
     }
+    else if (c == EOF || (c == ' ' || c == '\t' || c == '\n' || c == '\r'))
+    {
+        currentToken.type = END_OF_FILE;
+        currentToken.lexeme = "";
+    }
     else
     { // 不是数字和关键字、声明就是操作符
         lexeme += c;
@@ -166,6 +171,9 @@ void LexicalAnalysis::outputTokenList()
 {
     for (auto &token : tokenList)
     {
-        cout << tokenTypeToString(token.type) << ' ' << token.lexeme << '\n';
+        if (token.type != END_OF_FILE)
+        {
+            cout << tokenTypeToString(token.type) << ' ' << token.lexeme << '\n';
+        }
     }
 }
