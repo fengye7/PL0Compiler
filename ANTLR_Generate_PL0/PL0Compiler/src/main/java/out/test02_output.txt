@@ -1,0 +1,10 @@
+VAR null null a
+VAR null null b
+- c null Temp0
+* Temp0 b Temp1
+- c null Temp2
+* Temp2 b Temp3
+- Temp1 Temp3 Temp4
+:= Temp4 null a
+END   
+OPR 0 0 0

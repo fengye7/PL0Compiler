@@ -35,6 +35,9 @@ void Parser::program()
 void Parser::programHeader()
 {
     match(KEYWORD_PROGRAM, "PROGRAM");
+    // 添加程序名到符号表
+    string programName = currentToken.lexeme;
+    symbolTable.addIdentifier(programName, SymbolType::PROGRAM);
     match(IDENTIFIER, "_");
 }
 
@@ -62,6 +65,12 @@ void Parser::constantDeclaration()
         if (num != 0)
             match(DELIMITER, ",");
         string identifier = currentToken.lexeme;
+        // 检查常量名是否已经存在于符号表中
+        if (symbolTable.isIdentifierDeclared(identifier))
+        {
+            error("Duplicate identifier: " + identifier);
+        }
+
         match(IDENTIFIER, "_");
         match(OPERATOR, ":=");
         string value = currentToken.lexeme;
@@ -70,6 +79,8 @@ void Parser::constantDeclaration()
         num++;
 
         emit(OP_LOAD_CONST, value, "_", identifier);
+        // 添加常量名到符号表
+        symbolTable.addIdentifier(identifier, SymbolType::CONSTANT);
     } while (currentToken.type == DELIMITER && currentToken.lexeme == ",");
     match(DELIMITER, ";");
 }
@@ -84,9 +95,16 @@ void Parser::variableDeclaration()
         if (num != 0)
             match(DELIMITER, ",");
         string identifier = currentToken.lexeme;
+        // 检查变量名是否已经存在于符号表中
+        if (symbolTable.isIdentifierDeclared(identifier))
+        {
+            error("Duplicate identifier: " + identifier);
+        }
         match(IDENTIFIER, "_");
         num++;
         emit(OP_LOAD, identifier, "_", "_");
+        // 添加变量名到符号表
+        symbolTable.addIdentifier(identifier, SymbolType::VARIABLE);
     } while (currentToken.type == DELIMITER && currentToken.lexeme == ",");
     match(DELIMITER, ";");
 }
@@ -117,6 +135,11 @@ void Parser::statement()
 void Parser::assignmentStatement()
 {
     string identifier = currentToken.lexeme;
+    // 检查变量名是否存在于符号表中
+    if (!symbolTable.isIdentifierDeclared(identifier))
+    {
+        error("Undeclared identifier: " + identifier);
+    }
     match(IDENTIFIER, "_");
     match(OPERATOR, ":=");
     string value = expression();
@@ -169,6 +192,11 @@ string Parser::factor()
     if (currentToken.type == IDENTIFIER)
     {
         string identifier = currentToken.lexeme;
+        // 检查变量名是否存在于符号表中
+        if (!symbolTable.isIdentifierDeclared(identifier))
+        {
+            error("Undeclared identifier: " + identifier);
+        }
         match(IDENTIFIER, "_");
 
         return identifier;

@@ -2,7 +2,7 @@
  * @Author: fengye7 zcj2518529668@163.com
  * @Date: 2023-12-31 21:23:49
  * @LastEditors: fengye7 zcj2518529668@163.com
- * @LastEditTime: 2024-01-01 15:33:43
+ * @LastEditTime: 2024-01-05 19:43:58
  * @FilePath: \PL0MiniCompiler\src\headers\parser.h
  * @Description:
  *
@@ -44,6 +44,7 @@ private:
     vector<Quadruplet> quadrupleList; // 四元式列表
 
     LexicalAnalysis lexicalAnalyzer; // 词法分析子程序
+    SymbolTable symbolTable;         // 定义符号表
 
     void emit(OpType op, string op1, string op2, string result); // 生成中间代码
     void match(TokenType expectedType, const string &lexeme);    // 匹配符号

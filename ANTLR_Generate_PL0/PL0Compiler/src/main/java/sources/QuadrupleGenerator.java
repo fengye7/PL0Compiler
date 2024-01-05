@@ -1,11 +1,20 @@
 package sources;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.antlr.v4.runtime.Token;
 
 import sources.pl0Parser.*;
+
+class Symbol {
+    public String name;
+    public String type;
+
+    public Symbol(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+}
 
 class Quadruple {
     public String operator;
@@ -27,11 +36,13 @@ class Quadruple {
 
 public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
     private List<Quadruple> quadruples;
+    private Map<String, Symbol> symbolTable;
     private int tempCount;
     private int labelCount;
 
     public QuadrupleGenerator() {
         quadruples = new ArrayList<>();
+        symbolTable = new HashMap<>();
         tempCount = 0;
         labelCount = 0;
     }
@@ -43,10 +54,11 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
             return null;
         }
         Token programToken = ctx.getStart();
+        match(programToken.getText(),"PROGRAM");
         String programName = ctx.identifier().getText();
 
         System.out.println("Program Name: " + programName);
-
+        symbolTable.put(programName, new Symbol(programName, "PROCEDURE"));
         visitBlock(ctx.block());
         generateQuadruple("OPR", "0", "0", "0"); // Halt operation
         return null;
@@ -90,8 +102,13 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
             return null;
         }
         String name = ctx.identifier().getText();
+        if (symbolTable.containsKey(name)) {
+            error("Error: Constant " + name + " is already defined.");
+        }
+
         String value = ctx.unsignedInteger().getText();
         generateQuadruple("CONST", value, null, name);
+        symbolTable.put(name, new Symbol(name, "CONST"));
         return null;
     }
 
@@ -102,7 +119,11 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
             return null;
         }
         for (IdentifierContext identifier : ctx.identifier()) {
-            generateQuadruple("VAR", null, null, identifier.getText());
+            if (symbolTable.containsKey(identifier.getText())) {
+                error("Error: VAR " + identifier.getText() + " is already defined.");
+            }
+            generateQuadruple("VAR", identifier.getText(),null, null);
+            symbolTable.put(identifier.getText(), new Symbol(identifier.getText(), "VAR"));
         }
         return null;
     }
@@ -114,6 +135,9 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
             return null;
         }
         String variable = ctx.identifier().getText();
+        if (!symbolTable.containsKey(variable)) {
+            error("Error: Undeclared identifier: " + variable);
+        }
         String expressionResult = visitExpression(ctx.expression());
 
         generateQuadruple(":=", expressionResult, null, variable);
@@ -298,6 +322,9 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
             System.out.println("ctx is null");
             return null;
         }
+        if (!symbolTable.containsKey(ctx.getText())) {
+            error("Error: Undeclared identifier: " + ctx.getText());
+        }
         return ctx.getText();
     }
 
@@ -329,5 +356,18 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
     public List<Quadruple> getQuadruples() {
         return quadruples;
+    }
+
+    private void error(String message) {
+        System.err.println(message);
+        System.exit(1);
+    }
+
+    private void match(String str, String expectedStr)
+    {
+        if (!Objects.equals(str, expectedStr))
+        {
+            error("Unexpected token: " + expectedStr + " <=> " + str);
+        }
     }
 }

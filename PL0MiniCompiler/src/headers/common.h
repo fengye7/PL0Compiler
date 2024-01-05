@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -87,6 +88,35 @@ private:
     string op1;
     string op2;
     string result;
+};
+
+enum class SymbolType
+{
+    PROGRAM,
+    CONSTANT,
+    VARIABLE
+};
+
+class SymbolTable
+{
+private:
+    unordered_map<string, SymbolType> symbolTable;
+
+public:
+    void addIdentifier(const string &identifier, SymbolType type)
+    {
+        symbolTable[identifier] = type;
+    }
+
+    bool isIdentifierDeclared(const string &identifier)
+    {
+        return symbolTable.count(identifier) > 0;
+    }
+
+    SymbolType getIdentifierType(const string &identifier)
+    {
+        return symbolTable[identifier];
+    }
 };
 
 #endif

@@ -1,0 +1,5 @@
+PROGRAM test
+VAR a,b;
+BEGIN
+    a:=b*(-c)+b*(-c);
+END
