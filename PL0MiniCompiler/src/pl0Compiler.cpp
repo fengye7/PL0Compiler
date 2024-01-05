@@ -14,8 +14,8 @@ int main(int argc, char **argv)
     {
         Parser parser(argv[1], argv[2]);
         parser.compile();
-        parser.outputIntermediateCode();
-        parser.outputLexicalAnalyseResult();
+        // parser.outputIntermediateCode();
+        // parser.outputLexicalAnalyseResult();
     }
     return 0;
 }

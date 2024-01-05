@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2051cbb3-db94-4f30-b982-837d16a2bb13" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sources/QuadrupleGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sources/QuadrupleGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../PL0MiniCompiler/src/exe/pl0.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../PL0MiniCompiler/src/exe/pl0.exe" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +96,7 @@
       <updated>1704290191853</updated>
       <workItem from="1704290193181" duration="19414000" />
       <workItem from="1704368623568" duration="73000" />
-      <workItem from="1704444057336" duration="3890000" />
+      <workItem from="1704444057336" duration="4600000" />
     </task>
     <servers />
   </component>

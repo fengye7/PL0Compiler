@@ -1,3 +1,13 @@
+/*
+ * @Author: fengye7 zcj2518529668@163.com
+ * @Date: 2023-12-31 22:05:15
+ * @LastEditors: fengye7 zcj2518529668@163.com
+ * @LastEditTime: 2024-01-05 20:37:21
+ * @FilePath: \PL0MiniCompiler\src\sources\parser.cpp
+ * @Description:
+ *
+ * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
+ */
 #include "../headers/parser.h"
 
 // 在parser中emit四元式
@@ -18,8 +28,8 @@ void Parser::match(TokenType expectedType, const string &lexeme)
     }
     else
     {
-        outputIntermediateCode();
-        outputLexicalAnalyseResult();
+        // outputIntermediateCode();
+        // outputLexicalAnalyseResult();
         error("Unexpected token: " + tokenTypeToString(expectedType) + " <=> " + tokenTypeToString(currentToken.type) + " -> " + currentToken.lexeme);
     }
 }
