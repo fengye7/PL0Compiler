@@ -69,7 +69,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
         System.out.println("Program Name: " + programName);
         symbolTable.put(programName, new Symbol(programName, "PROCEDURE", Integer.toString(addressCount++)));
         visitBlock(ctx.block());
-        generateQuadruple("OPR", "0", "0", "0"); // Halt operation
+//        generateQuadruple("OPR", "0", "0", "0"); // Halt operation
         return null;
     }
 
@@ -163,7 +163,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
         String termResult = visitTerm(ctx.term());
 
         if (ctx.getChildCount() > 1) {
-            String operator = ctx.getChild(0).getText();
+            String operator = ctx.getChild(1).getText();
             String expressionResult = visitExpression(ctx.expression());
             String result = generateTempVariable();
             symbolTable.put(result, new Symbol(result, "VAR", Integer.toString(addressCount++)));
