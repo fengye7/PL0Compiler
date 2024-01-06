@@ -2,7 +2,7 @@
  * @Author: fengye7 zcj2518529668@163.com
  * @Date: 2023-12-31 21:23:49
  * @LastEditors: fengye7 zcj2518529668@163.com
- * @LastEditTime: 2024-01-05 19:43:58
+ * @LastEditTime: 2024-01-06 10:44:51
  * @FilePath: \PL0MiniCompiler\src\headers\parser.h
  * @Description:
  *
@@ -33,6 +33,11 @@ public:
     {
         for (auto &it : quadrupleList)
             it.outputQuadruplet();
+    }
+
+    void outputSymbolTableToFile(const std::string &filename)
+    {
+        symbolTable.printToFile(filename);
     }
 
 private:

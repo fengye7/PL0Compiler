@@ -6,13 +6,20 @@ import org.antlr.v4.runtime.Token;
 
 import sources.pl0Parser.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 class Symbol {
     public String name;
     public String type;
+    public String address;
 
-    public Symbol(String name, String type) {
+    public Symbol(String name, String type, String addressInt) {
         this.name = name;
         this.type = type;
+        this.address ="ADDR" + addressInt;
     }
 }
 
@@ -39,12 +46,14 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
     private Map<String, Symbol> symbolTable;
     private int tempCount;
     private int labelCount;
+    private int addressCount;
 
     public QuadrupleGenerator() {
         quadruples = new ArrayList<>();
         symbolTable = new HashMap<>();
         tempCount = 0;
         labelCount = 0;
+        addressCount =0;
     }
 
     @Override
@@ -58,7 +67,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
         String programName = ctx.identifier().getText();
 
         System.out.println("Program Name: " + programName);
-        symbolTable.put(programName, new Symbol(programName, "PROCEDURE"));
+        symbolTable.put(programName, new Symbol(programName, "PROCEDURE", Integer.toString(addressCount++)));
         visitBlock(ctx.block());
         generateQuadruple("OPR", "0", "0", "0"); // Halt operation
         return null;
@@ -108,7 +117,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
 
         String value = ctx.unsignedInteger().getText();
         generateQuadruple("CONST", value, null, name);
-        symbolTable.put(name, new Symbol(name, "CONST"));
+        symbolTable.put(name, new Symbol(name, "CONST", Integer.toString(addressCount++)));
         return null;
     }
 
@@ -123,7 +132,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
                 error("Error: VAR " + identifier.getText() + " is already defined.");
             }
             generateQuadruple("VAR", identifier.getText(),null, null);
-            symbolTable.put(identifier.getText(), new Symbol(identifier.getText(), "VAR"));
+            symbolTable.put(identifier.getText(), new Symbol(identifier.getText(), "VAR", Integer.toString(addressCount++)));
         }
         return null;
     }
@@ -157,6 +166,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
             String operator = ctx.getChild(0).getText();
             String expressionResult = visitExpression(ctx.expression());
             String result = generateTempVariable();
+            symbolTable.put(result, new Symbol(result, "VAR", Integer.toString(addressCount++)));
 
             Quadruple quadruple;
 
@@ -186,6 +196,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
             String operator = ctx.getChild(1).getText();
             String termResult = visitTerm(ctx.term());
             String result = generateTempVariable();
+            symbolTable.put(result, new Symbol(result, "VAR", Integer.toString(addressCount++)));
 
             Quadruple quadruple;
 
@@ -251,6 +262,7 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
         String operator = visitRelationalOperator(ctx.relationalOperator());
 
         String result = generateTempVariable();
+        symbolTable.put(result, new Symbol(result, "VAR", Integer.toString(addressCount++)));
 
         Quadruple compareQuadruple = new Quadruple(operator, expression1Result, expression2Result, result);
         quadruples.add(compareQuadruple);
@@ -368,6 +380,21 @@ public class QuadrupleGenerator extends pl0BaseVisitor<Void> {
         if (!Objects.equals(str, expectedStr))
         {
             error("Unexpected token: " + expectedStr + " <=> " + str);
+        }
+    }
+
+    public void printToFile(String filename) {
+        try {
+            FileWriter fileWriter = new FileWriter(filename);
+            for (Map.Entry<String, Symbol> entry : symbolTable.entrySet()) {
+                String name = entry.getKey();
+                Symbol symbol = entry.getValue();
+                fileWriter.write("Name: " + name + ", Type: " + symbol.type+ ", Address: " + symbol.address +  "\n");
+            }
+            fileWriter.close();
+            System.out.println("Symbol table has been printed to " + filename);
+        } catch (IOException e) {
+            System.err.println("Unable to open file: " + filename);
         }
     }
 }

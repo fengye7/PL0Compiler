@@ -14,6 +14,7 @@ int main(int argc, char **argv)
     {
         Parser parser(argv[1], argv[2]);
         parser.compile();
+        parser.outputSymbolTableToFile("../out/symbolTable.txt");
         // parser.outputIntermediateCode();
         // parser.outputLexicalAnalyseResult();
     }

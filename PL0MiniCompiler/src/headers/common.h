@@ -100,22 +100,59 @@ enum class SymbolType
 class SymbolTable
 {
 private:
-    unordered_map<string, SymbolType> symbolTable;
+    std::unordered_map<std::string, SymbolType> symbolTable;
+    std::unordered_map<std::string, std::string> symbolAddresses;
+    int addressCounter;
 
 public:
-    void addIdentifier(const string &identifier, SymbolType type)
+    SymbolTable() : addressCounter(0) {}
+
+    void addIdentifier(const std::string &identifier, SymbolType type)
     {
         symbolTable[identifier] = type;
+        std::string address = "ADDR" + std::to_string(addressCounter++);
+        symbolAddresses[identifier] = address;
     }
 
-    bool isIdentifierDeclared(const string &identifier)
+    bool isIdentifierDeclared(const std::string &identifier)
     {
         return symbolTable.count(identifier) > 0;
     }
 
-    SymbolType getIdentifierType(const string &identifier)
+    SymbolType getIdentifierType(const std::string &identifier)
     {
         return symbolTable[identifier];
+    }
+
+    void printToFile(const std::string &filename)
+    {
+        std::ofstream outputFile(filename);
+        if (outputFile.is_open())
+        {
+            for (const auto &entry : symbolTable)
+            {
+                outputFile << entry.first << ": ";
+                switch (entry.second)
+                {
+                case SymbolType::PROGRAM:
+                    outputFile << "PROGRAM";
+                    break;
+                case SymbolType::CONSTANT:
+                    outputFile << "CONSTANT";
+                    break;
+                case SymbolType::VARIABLE:
+                    outputFile << "VARIABLE";
+                    break;
+                }
+                outputFile << " (Address: " << symbolAddresses[entry.first] << ")" << std::endl;
+            }
+            outputFile.close();
+            std::cout << "Symbol table has been printed to " << filename << std::endl;
+        }
+        else
+        {
+            std::cerr << "Unable to open file: " << filename << std::endl;
+        }
     }
 };
 

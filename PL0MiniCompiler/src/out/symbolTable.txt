@@ -1,0 +1,6 @@
+Temp2: VARIABLE (Address: ADDR5)
+Temp1: VARIABLE (Address: ADDR4)
+y: VARIABLE (Address: ADDR2)
+x: VARIABLE (Address: ADDR1)
+Temp0: VARIABLE (Address: ADDR3)
+add: PROGRAM (Address: ADDR0)

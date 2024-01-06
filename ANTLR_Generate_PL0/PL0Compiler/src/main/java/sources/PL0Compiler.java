@@ -60,6 +60,8 @@ public class PL0Compiler {
 
             // 将中间代码写入输出文件
             writeQuadruplesToFile(quadruples, outputFile);
+            // 将符号表打印到文件
+            quadrupleGenerator.printToFile(".\\src\\main\\java\\out\\symbolTable.txt");
 
             System.out.println("Abstract syntax tree printed successfully.");
         } catch (IOException e) {

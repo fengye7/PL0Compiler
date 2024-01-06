@@ -2,7 +2,7 @@
  * @Author: fengye7 zcj2518529668@163.com
  * @Date: 2023-12-31 22:05:15
  * @LastEditors: fengye7 zcj2518529668@163.com
- * @LastEditTime: 2024-01-05 20:37:21
+ * @LastEditTime: 2024-01-06 11:01:49
  * @FilePath: \PL0MiniCompiler\src\sources\parser.cpp
  * @Description:
  *
@@ -174,6 +174,8 @@ string Parser::expression()
         match(DELIMITER, currentToken.lexeme);
         string right = term();
         string result = generateTempVariable();
+        // 添加变量名到符号表
+        symbolTable.addIdentifier(result, SymbolType::VARIABLE);
 
         emit(op == "+" ? OP_ADD : OP_SUB, left, right, result);
         left = result;
@@ -190,6 +192,8 @@ string Parser::term()
         match(DELIMITER, currentToken.lexeme);
         string right = factor();
         string result = generateTempVariable();
+        // 添加变量名到符号表
+        symbolTable.addIdentifier(result, SymbolType::VARIABLE);
 
         emit(op == "*" ? OP_MUL : OP_DIV, left, right, result);
         left = result;
